@@ -6,32 +6,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"></script>
+    <script src="jquery.fullpage.extensions.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
 </head>
 
 <body>
     <div id="fullpage">
         <div class="section">
-            <div class="slide"> Slide 1 </div>
-            <div class="slide"> Slide 2 </div>
-            <div class="slide"> Slide 3 </div>
-            <div class="slide"> Slide 4 </div>
+            <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide">Slide 1</div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                </div>
+                <!-- <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div> -->
+                <div class="swiper-pagination"></div>
+            </div>
         </div>
         <div class="section">Some section</div>
         <div class="section">Some section</div>
-        <div class="section">Some section</div>
+        <div class="section fp-auto-height" id="section4">
+            <div class="myContent">
+                Section 3
+            </div>
+        </div>
         
     </div>
-    <div class="footer">footer</div>
-
     <style>
-        .section{width:100%;height:100vh;text-align: center;}
+        .section{width:100%;height:100vh;text-align: center;padding:0!important;}
         .section:nth-child(odd){background-color: darkslateblue;}
         .footer{height: 50vh;width: 100%;background-color: darkslategrey!important;}
+        .myContent{
+            height: 300px;
+            display: flex;align-items: center;justify-content:center;
+        }
     </style>
 
+    <style>
+        .swiper {
+        width: 100%;
+        height: 100%;
+        }
+
+        .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        }
+
+        .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+    </style>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+        //autoHeight: true,
+        speed:500,
+        loop:true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            type: "fraction",
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $('#fullpage').fullpage({
@@ -46,7 +118,8 @@
             menu: '#menu',
             lockAnchors: false,
             anchors: ['firstPage', 'secondPage'],
-            navigation: false,
+            sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
+            navigation: true,
             navigationPosition: 'right',
             navigationTooltips: ['firstSlide', 'secondSlide'],
             showActiveTooltip: false,
@@ -55,7 +128,7 @@
 
             //스크롤
             css3: true,
-            scrollingSpeed: 700,
+            scrollingSpeed: 500,
             autoScrolling: true,
             fitToSection: true,
             fitToSectionDelay: 1000,
@@ -86,7 +159,7 @@
             recordHistory: true,
 
             //디자인
-            controlArrows: true,
+            controlArrows: false,
             verticalCentered: true,
             sectionsColor: ['#ccc', '#fff'],
             paddingTop: '3em',
